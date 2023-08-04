@@ -51,12 +51,41 @@
 
         public void Exercise4()
         {
-            Console.WriteLine("N/A");
+            Random random = new Random();
+            int randomNumber = random.Next(1, 11);
+            // Console.WriteLine($"Shhhhh! The random number is {randomNumber}");
+            int count = 4;
+            Console.Write("I have chosen a random number from 1 to 10. You have four guesses: ");
+            int userGuess = Int32.Parse(Console.ReadLine());
+            while (userGuess != randomNumber && count > 1) 
+            {
+                count--;
+                Console.WriteLine($"Guess again! You have {count} {(count > 1 ? "guesses" : "guess")} remaining.");
+                Console.Write($"Your {(count > 1 ? "next" : "final")} guess: ");
+                userGuess = Int32.Parse(Console.ReadLine());
+            }
+            if (userGuess == randomNumber)
+            {
+                Console.WriteLine("Congratulations! You guessed my random number.");
+            }
+            else
+            {
+                Console.WriteLine("0 guesses remaining. Try again sometime!");
+            }
         }
 
         public void Exercise5()
         {
-            Console.WriteLine("N/A");
+            List<int> numbersEntered = new List<int>();
+            Console.Write("Enter a series of integers separated by a comma: ");
+            string userInput = Console.ReadLine();
+            foreach (var sub in userInput.Split(","))
+            {
+                int num;
+                if (int.TryParse(sub, out num))
+                    numbersEntered.Add(num);
+            }
+            Console.WriteLine($"The greatest integer in the series you supplied is {numbersEntered.Max()}.");
         }
     }
 }
